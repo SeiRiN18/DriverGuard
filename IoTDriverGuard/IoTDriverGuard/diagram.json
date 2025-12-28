@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "author": "DriverGuard",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": -158.5, "left": 91, "attrs": {} },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": -199.2,
+      "left": 11.4,
+      "attrs": { "volume": "0.1" }
+    },
+    { "type": "wokwi-mpu6050", "id": "imu1", "top": -216.98, "left": 232.72, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "pot1", "top": -126.1, "left": 335.8, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "pot2", "top": -10.9, "left": 335.8, "attrs": {} },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 90.35,
+      "left": 336,
+      "attrs": { "value": "220000" }
+    },
+    {
+      "type": "board-ssd1306",
+      "id": "oled1",
+      "top": 70.34,
+      "left": 173.03,
+      "attrs": { "i2cAddress": "0x3c" }
+    },
+    {
+      "type": "wokwi-rgb-led",
+      "id": "rgb1",
+      "top": 13.6,
+      "left": 289.1,
+      "attrs": { "common": "cathode" }
+    }
+  ],
+  "connections": [
+    [ "esp:GND", "mpu:GND", "black", [] ],
+    [ "esp:21", "mpu:SDA", "green", [] ],
+    [ "esp:22", "mpu:SCL", "yellow", [] ],
+    [ "imu1:SDA", "esp:D21", "green", [ "v0" ] ],
+    [ "imu1:SCL", "esp:D22", "green", [ "v0" ] ],
+    [ "oled1:SDA", "esp:D21", "green", [ "v0" ] ],
+    [ "oled1:SCL", "esp:D22", "green", [ "v0" ] ],
+    [ "imu1:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "oled1:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "pot2:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "pot1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "oled1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "imu1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "pot1:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "pot2:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "pot1:SIG", "esp:D34", "green", [ "v0" ] ],
+    [ "pot2:SIG", "esp:D35", "green", [ "v0" ] ],
+    [ "bz1:2", "esp:D25", "green", [ "v0" ] ],
+    [ "bz1:1", "esp:GND.1", "green", [ "v0" ] ],
+    [ "r1:2", "esp:GND.1", "green", [ "v0" ] ],
+    [ "rgb1:COM", "r1:1", "green", [ "v0" ] ],
+    [ "rgb1:R", "esp:D26", "green", [ "v0" ] ],
+    [ "rgb1:G", "esp:D27", "green", [ "v0" ] ],
+    [ "rgb1:B", "esp:D14", "green", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}

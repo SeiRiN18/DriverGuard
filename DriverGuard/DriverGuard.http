@@ -1,0 +1,6 @@
+@DriverGuard_HostAddress = http://localhost:5279
+
+GET {{DriverGuard_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
