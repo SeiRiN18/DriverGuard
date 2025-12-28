@@ -1,5 +1,5 @@
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 
 
@@ -9,7 +9,7 @@ RUN dotnet restore "./DriverGuard.csproj"
 COPY . .
 RUN dotnet publish "DriverGuard.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
 WORKDIR /app
 
 ENV ASPNETCORE_URLS=http://+:8080
