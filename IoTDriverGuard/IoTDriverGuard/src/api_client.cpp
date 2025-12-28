@@ -1,4 +1,5 @@
 #include <HTTPClient.h>
+#include <WiFiClientSecure.h> 
 #include <time.h>
 #include "api_client.h"
 #include "config.h"
@@ -6,6 +7,7 @@
 
 static void formatIsoTimestamp(unsigned long ms_since_boot, char* out, size_t out_size) {
   time_t now = time(nullptr);
+  
   if (now < 100000) {
     now = ms_since_boot / 1000;
   }
@@ -24,9 +26,24 @@ static void formatIsoTimestamp(unsigned long ms_since_boot, char* out, size_t ou
 bool sendEventToServer(const DriverEvent& ev) {
   if (!isWiFiConnected()) return false;
 
+ 
+  WiFiClientSecure client;
+  
+  
+  client.setInsecure();
+
   HTTPClient http;
-  http.begin(String(SERVER_URL) + EVENTS_ENDPOINT);
+
+  
+  String url = String(SERVER_URL) + EVENTS_ENDPOINT;
+  
+  if (!http.begin(client, url)) {
+      Serial.println("Failed to begin HTTPS connection");
+      return false;
+  }
+
   http.addHeader("Content-Type", "application/json");
+ 
   http.addHeader("X-Device-Key", DEVICE_API_KEY);
 
   char occurred_at[25];
@@ -39,7 +56,20 @@ bool sendEventToServer(const DriverEvent& ev) {
   payload += "\"occurredAt\":\"" + String(occurred_at) + "\"";
   payload += "}";
 
+  Serial.print("Posting to: ");
+  Serial.println(url);
+
   int code = http.POST(payload);
+  
+  if (code > 0) {
+      String response = http.getString();
+      Serial.print("Server response: ");
+      Serial.println(code);
+     
+      Serial.print("Error sending POST: ");
+      Serial.println(http.errorToString(code).c_str());
+  }
+
   http.end();
 
   return code == 200 || code == 201;

@@ -3,12 +3,12 @@
 #define WIFI_SSID "Wokwi-GUEST"
 #define WIFI_PASSWORD ""
 
-#define SERVER_URL "http://host.wokwi.internal:5279"
+#define SERVER_URL "https://driverguard-o4au.onrender.com"
 
 #define EVENTS_ENDPOINT "/api/events"
 
 
-#define DEVICE_API_KEY  "0812290e-3621-433a-88e0-f79c3b8efc18"
+#define DEVICE_API_KEY  "4c6aaf23-ea0f-41af-b659-de0dd3a9fdd4"
 
 
 #define SEND_INTERVAL_MS 5000   
