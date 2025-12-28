@@ -1,4 +1,4 @@
-﻿namespace DriverGuard.Backend.DTO.Admin
+﻿namespace DriverGuard.DTO.Admin
 {
     public class AdminStatsDto
     {

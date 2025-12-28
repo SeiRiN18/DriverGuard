@@ -1,10 +1,10 @@
-﻿using DriverGuard.Backend.DTO.Auth;
-using DriverGuard.Backend.Models;
-using DriverGuard.Backend.Services.Users;
+﻿using DriverGuard.DTO.Auth;
+using DriverGuard.Models;
+using DriverGuard.Services.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DriverGuard.Backend.Controllers
+namespace DriverGuard.Controllers
 {
     [ApiController]
     [Route("api/auth")]

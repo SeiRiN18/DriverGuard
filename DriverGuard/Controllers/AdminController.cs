@@ -1,10 +1,10 @@
-﻿using DriverGuard.Backend.Services;
-using DriverGuard.Backend.Services.AdminStats;
-using DriverGuard.Backend.Services.Users;
+﻿using DriverGuard.Services;
+using DriverGuard.Services.AdminStats;
+using DriverGuard.Services.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DriverGuard.Backend.Controllers
+namespace DriverGuard.Controllers
 {
     [ApiController]
     [Route("api/admin")]

@@ -1,5 +1,5 @@
-﻿using DriverGuard.Backend.DTO.Notification;
-using DriverGuard.Backend.Services;
+﻿using DriverGuard.DTO.Notification;
+using DriverGuard.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;

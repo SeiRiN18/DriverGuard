@@ -1,8 +1,8 @@
-﻿using DriverGuard.Backend.Exceptions;
+﻿using DriverGuard.Exceptions;
 using System.Net;
 using System.Text.Json;
 
-namespace DriverGuard.Backend.Middleware
+namespace DriverGuard.Middleware
 {
     public class ExceptionHandlingMiddleware
     {

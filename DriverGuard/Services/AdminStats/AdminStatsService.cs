@@ -1,10 +1,10 @@
-﻿using DriverGuard.Backend.Data;
-using DriverGuard.Backend.DTO.Admin;
-using DriverGuard.Backend.Models;
-using DriverGuard.Backend.Services.AdminStats;
+﻿using DriverGuard.Data;
+using DriverGuard.DTO.Admin;
+using DriverGuard.Models;
+using DriverGuard.Services.AdminStats;
 using Microsoft.EntityFrameworkCore;
 
-namespace DriverGuard.Backend.Services
+namespace DriverGuard.Services
 {
     public class AdminStatsService : IAdminStatsService
     {

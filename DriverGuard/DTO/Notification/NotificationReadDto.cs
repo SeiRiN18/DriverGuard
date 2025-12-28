@@ -1,4 +1,4 @@
-﻿namespace DriverGuard.Backend.DTO.Notification
+﻿namespace DriverGuard.DTO.Notification
 {
     public class NotificationReadDto
     {

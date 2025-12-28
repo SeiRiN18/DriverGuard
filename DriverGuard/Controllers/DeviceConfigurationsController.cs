@@ -1,11 +1,11 @@
-﻿using DriverGuard.Backend.Data;
-using DriverGuard.Backend.DTO.DeviceConfiguration;
-using DriverGuard.Backend.Models;
-using DriverGuard.Backend.Services;
+﻿using DriverGuard.Data;
+using DriverGuard.DTO.DeviceConfiguration;
+using DriverGuard.Models;
+using DriverGuard.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace DriverGuard.Backend.Controllers
+namespace DriverGuard.Controllers
 {
     [ApiController]
     [Route("api/devices/{deviceId}/configuration")]

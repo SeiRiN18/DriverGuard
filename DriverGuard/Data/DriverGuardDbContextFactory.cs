@@ -1,8 +1,8 @@
-﻿using DriverGuard.Backend.Data;
+﻿using DriverGuard.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
-namespace DriverGuard.Backend.Data
+namespace DriverGuard.Data
 {
     public class DriverGuardDbContextFactory
         : IDesignTimeDbContextFactory<DriverGuardDbContext>

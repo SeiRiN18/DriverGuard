@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace DriverGuard.Backend.Migrations
+namespace DriverGuard.Migrations
 {
     /// <inheritdoc />
     public partial class AddUserRoles : Migration

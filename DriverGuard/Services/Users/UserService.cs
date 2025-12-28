@@ -1,10 +1,10 @@
-﻿using DriverGuard.Backend.Data;
-using DriverGuard.Backend.Exceptions;
-using DriverGuard.Backend.Models;
-using DriverGuard.Backend.Services.Users;
+﻿using DriverGuard.Data;
+using DriverGuard.Exceptions;
+using DriverGuard.Models;
+using DriverGuard.Services.Users;
 using Microsoft.EntityFrameworkCore;
 
-namespace DriverGuard.Backend.Services
+namespace DriverGuard.Services
 {
     public class UserService : IUserService
     {

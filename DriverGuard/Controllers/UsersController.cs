@@ -1,6 +1,6 @@
-﻿using DriverGuard.Backend.DTO.User;
-using DriverGuard.Backend.Models;
-using DriverGuard.Backend.Services.Users;
+﻿using DriverGuard.DTO.User;
+using DriverGuard.Models;
+using DriverGuard.Services.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;

@@ -1,4 +1,4 @@
-﻿namespace DriverGuard.Backend.DTO.DeviceConfiguration
+﻿namespace DriverGuard.DTO.DeviceConfiguration
 {
     public class DeviceConfigurationReadDto
     {

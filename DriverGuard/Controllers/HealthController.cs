@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using DriverGuard.Backend.Data;
+using DriverGuard.Data;
 
 [ApiController]
 [Route("api/health")]

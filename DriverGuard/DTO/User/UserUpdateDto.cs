@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DriverGuard.Backend.DTO.User
+namespace DriverGuard.DTO.User
 {
     public class UserUpdateDto
     {

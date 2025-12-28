@@ -1,6 +1,6 @@
-﻿using DriverGuard.Backend.Models;
+﻿using DriverGuard.Models;
 
-namespace DriverGuard.Backend.Services.Users
+namespace DriverGuard.Services.Users
 {
     public interface IUserService
     {

@@ -1,4 +1,4 @@
-﻿namespace DriverGuard.Backend.DTO.Device
+﻿namespace DriverGuard.DTO.Device
 {
     public class DeviceUpdateDto
     {

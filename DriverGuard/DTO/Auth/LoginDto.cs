@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DriverGuard.Backend.DTO.Auth
+namespace DriverGuard.DTO.Auth
 {
     public class LoginDto
     {

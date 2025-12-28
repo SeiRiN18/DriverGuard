@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DriverGuard.Backend.Models
+namespace DriverGuard.Models
 {
     public class Notification
     {

@@ -1,11 +1,11 @@
-﻿using DriverGuard.Backend.Data;
-using DriverGuard.Backend.Exceptions;
-using DriverGuard.Backend.Models;
+﻿using DriverGuard.Data;
+using DriverGuard.Exceptions;
+using DriverGuard.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace DriverGuard.Backend.Services
+namespace DriverGuard.Services
 {
     public class DeviceService : IDeviceService
     {

@@ -1,4 +1,4 @@
-﻿namespace DriverGuard.Backend.DTO.User
+﻿namespace DriverGuard.DTO.User
 {
     public class UserReadDto
     {

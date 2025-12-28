@@ -1,4 +1,4 @@
-﻿namespace DriverGuard.Backend.DTO.DriverEvent
+﻿namespace DriverGuard.DTO.DriverEvent
 {
     public class DriverEventReadDto
     {

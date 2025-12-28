@@ -1,4 +1,4 @@
-﻿using DriverGuard.Backend.Models;
+﻿using DriverGuard.Models;
 
 public interface IJwtService
 {

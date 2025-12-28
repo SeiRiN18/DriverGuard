@@ -1,6 +1,6 @@
-﻿using DriverGuard.Backend.DTO.Admin;
+﻿using DriverGuard.DTO.Admin;
 
-namespace DriverGuard.Backend.Services.AdminStats
+namespace DriverGuard.Services.AdminStats
 {
     public interface IAdminStatsService
     {

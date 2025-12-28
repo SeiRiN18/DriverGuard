@@ -1,6 +1,6 @@
-﻿using DriverGuard.Backend.Models;
+﻿using DriverGuard.Models;
 
-namespace DriverGuard.Backend.Services
+namespace DriverGuard.Services
 {
     public interface IDeviceConfigurationService
     {

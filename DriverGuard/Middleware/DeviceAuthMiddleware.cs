@@ -1,9 +1,9 @@
-﻿using DriverGuard.Backend.Data;
+﻿using DriverGuard.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace DriverGuard.Backend.Middleware
+namespace DriverGuard.Middleware
 {
     public class DeviceAuthMiddleware
     {

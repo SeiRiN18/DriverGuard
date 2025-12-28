@@ -1,6 +1,6 @@
-﻿using DriverGuard.Backend.DTO.DriverEvent;
-using DriverGuard.Backend.Models;
-using DriverGuard.Backend.Services;
+﻿using DriverGuard.DTO.DriverEvent;
+using DriverGuard.Models;
+using DriverGuard.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

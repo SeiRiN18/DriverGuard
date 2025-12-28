@@ -1,4 +1,4 @@
-﻿namespace DriverGuard.Backend.Exceptions
+﻿namespace DriverGuard.Exceptions
 {
     public abstract class BusinessException : Exception
     {

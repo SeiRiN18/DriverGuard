@@ -1,4 +1,4 @@
-﻿namespace DriverGuard.Backend.Models
+﻿namespace DriverGuard.Models
 {
     public class User
     {

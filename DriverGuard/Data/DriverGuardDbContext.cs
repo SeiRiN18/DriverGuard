@@ -1,7 +1,7 @@
-﻿using DriverGuard.Backend.Models;
+﻿using DriverGuard.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace DriverGuard.Backend.Data
+namespace DriverGuard.Data
 {
     public class DriverGuardDbContext : DbContext
     {

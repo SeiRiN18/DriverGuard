@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DriverGuard.Backend.DTO.DeviceConfiguration
+namespace DriverGuard.DTO.DeviceConfiguration
 {
     public class DeviceConfigurationUpdateDto
     {
