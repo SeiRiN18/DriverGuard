@@ -12,7 +12,22 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        var builder = WebApplication.CreateBuilder(args);
+        var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+        {
+            Args = args
+        });
+
+        // Вимикаємо reloadOnChange для всіх джерел конфігурації
+        builder.Configuration.GetSection("hostBuilder:reloadConfigOnChange").Value = "false";
+
+        // Або більш радикально — пересобираємо конфіг без "watch"
+        builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
+        {
+            foreach (var source in config.Sources.OfType<FileConfigurationSource>())
+            {
+                source.ReloadOnChange = false;
+            }
+        });
 
 
         builder.Services.AddControllers();
