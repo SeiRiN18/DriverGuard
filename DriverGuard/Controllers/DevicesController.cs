@@ -54,12 +54,13 @@ public class DevicesController : ControllerBase
         );
 
         var devices = await _deviceService.GetByUserIdAsync(userId);
+        var threshold = DateTime.UtcNow.AddSeconds(-30);
 
         return devices.Select(d => new DeviceReadDto
         {
             Id = d.Id,
             SerialNumber = d.SerialNumber,
-            IsActive = d.IsActive,
+            IsActive = d.LastSeenAt.HasValue && d.LastSeenAt.Value > threshold,
             LastSeenAt = d.LastSeenAt
         }).ToList();
     }
@@ -84,7 +85,7 @@ public class DevicesController : ControllerBase
         {
             Id = device.Id,
             SerialNumber = device.SerialNumber,
-            IsActive = device.IsActive,
+            IsActive = device.LastSeenAt.HasValue && device.LastSeenAt.Value > DateTime.UtcNow.AddSeconds(-30),
             LastSeenAt = device.LastSeenAt
         };
     }
