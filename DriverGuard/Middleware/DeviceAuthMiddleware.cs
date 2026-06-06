@@ -16,7 +16,10 @@ namespace DriverGuard.Middleware
 
         public async Task InvokeAsync(HttpContext context, DriverGuardDbContext db)
         {
-            if (!context.Request.Path.StartsWithSegments("/api/events"))
+            var isIotPost = context.Request.Method == "POST"
+                && context.Request.Path.Equals("/api/events", StringComparison.OrdinalIgnoreCase);
+
+            if (!isIotPost)
             {
                 await _next(context);
                 return;
