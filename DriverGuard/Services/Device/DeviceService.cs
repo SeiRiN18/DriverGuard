@@ -49,6 +49,15 @@ namespace DriverGuard.Services
             _context.Devices.Add(device);
             await _context.SaveChangesAsync();
 
+            _context.DeviceConfigurations.Add(new DeviceConfiguration
+            {
+                DeviceId = device.Id,
+                DrowsinessThreshold = 0.6,
+                AttentionThreshold = 0.6,
+                UpdatedAt = DateTime.UtcNow
+            });
+            await _context.SaveChangesAsync();
+
             // ⚠️ ПОВЕРТАЄМО RAW KEY ОДИН РАЗ
             return (device, rawKey);
         }

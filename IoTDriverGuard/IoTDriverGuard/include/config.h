@@ -3,7 +3,7 @@
 #define WIFI_SSID "Wokwi-GUEST"
 #define WIFI_PASSWORD ""
 
-#define SERVER_URL "https://driverguard-o4au.onrender.com"
+#define SERVER_URL "https://driverguard-api-ynl5.onrender.com"
 
 #define EVENTS_ENDPOINT "/api/events"
 

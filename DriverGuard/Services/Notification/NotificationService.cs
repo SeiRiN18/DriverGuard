@@ -1,6 +1,7 @@
 ﻿using DriverGuard.Data;
 using DriverGuard.Exceptions;
 using DriverGuard.Models;
+using DriverGuard.Services.Fcm;
 using Microsoft.EntityFrameworkCore;
 
 namespace DriverGuard.Services
@@ -8,10 +9,12 @@ namespace DriverGuard.Services
     public class NotificationService : INotificationService
     {
         private readonly DriverGuardDbContext _context;
+        private readonly IFcmService _fcmService;
 
-        public NotificationService(DriverGuardDbContext context)
+        public NotificationService(DriverGuardDbContext context, IFcmService fcmService)
         {
             _context = context;
+            _fcmService = fcmService;
         }
 
         // =====================================================
@@ -50,6 +53,19 @@ namespace DriverGuard.Services
 
             _context.Notifications.Add(notification);
             await _context.SaveChangesAsync();
+
+            // Push notification via FCM
+            var user = await _context.Users.FindAsync(notification.UserId);
+            if (user?.FcmToken != null)
+            {
+                var title = notification.Type == "CRITICAL" ? "Критичний стан водія!" : "Попередження";
+                await _fcmService.SendAsync(
+                    user.FcmToken,
+                    title,
+                    notification.Message,
+                    new Dictionary<string, string> { ["notificationId"] = notification.Id.ToString() }
+                );
+            }
 
             return notification;
         }

@@ -57,8 +57,22 @@ namespace DriverGuard.Controllers
             return Ok(new
             {
                 token,
-                role = user.Role.ToString() // Краще повертати рядок для фронтенду
+                role = user.Role.ToString()
             });
+        }
+
+        [AllowAnonymous]
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword(ResetPasswordDto dto)
+        {
+            var user = await _userService.GetByEmailAsync(dto.Email);
+            if (user == null)
+                return NotFound("Користувача з таким email не знайдено");
+
+            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.NewPassword);
+            await _userService.UpdateAsync(user);
+
+            return Ok();
         }
     }
 

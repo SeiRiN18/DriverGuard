@@ -4,10 +4,11 @@ using DriverGuard.Services.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using DriverGuard.Services.Fcm;
 
 [ApiController]
 [Route("api/users")]
-[Authorize] // 🔒 ВСІ ендпоінти захищені
+[Authorize]
 public class UsersController : ControllerBase
 {
     private readonly IUserService _userService;
@@ -17,9 +18,19 @@ public class UsersController : ControllerBase
         _userService = userService;
     }
 
-    // ===============================
-    // READ ALL (ADMIN ONLY)
-    // ===============================
+    [HttpPut("me/fcm-token")]
+    public async Task<IActionResult> UpdateFcmToken(UpdateFcmTokenDto dto)
+    {
+        var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+        var user = await _userService.GetByIdAsync(userId);
+        if (user == null) return NotFound();
+
+        user.FcmToken = dto.FcmToken;
+        await _userService.UpdateAsync(user);
+        return NoContent();
+    }
+
+
     [HttpGet]
     [Authorize(Roles = "Admin")]
     public async Task<ActionResult<IEnumerable<UserReadDto>>> GetAll()
@@ -34,9 +45,6 @@ public class UsersController : ControllerBase
         }).ToList();
     }
 
-    // ===============================
-    // READ BY ID (ADMIN або ВЛАСНИК)
-    // ===============================
     [HttpGet("{id}")]
     public async Task<ActionResult<UserReadDto>> GetById(Guid id)
     {
@@ -60,9 +68,6 @@ public class UsersController : ControllerBase
         };
     }
 
-    // ===============================
-    // UPDATE (ADMIN або ВЛАСНИК)
-    // ===============================
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(Guid id, UserUpdateDto dto)
     {
@@ -80,16 +85,13 @@ public class UsersController : ControllerBase
 
         user.Email = dto.Email;
 
-        // 🔐 ХЕШУЄМО ПАРОЛЬ
         user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password);
 
         await _userService.UpdateAsync(user);
         return NoContent();
     }
 
-    // ===============================
-    // DELETE (ADMIN ONLY)
-    // ===============================
+
     [HttpDelete("{id}")]
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(Guid id)

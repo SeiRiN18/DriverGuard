@@ -17,9 +17,7 @@ public class DevicesController : ControllerBase
         _deviceService = deviceService;
     }
 
-    // ==========================================
-    // CREATE DEVICE (USER)
-    // ==========================================
+
     [HttpPost]
     public async Task<IActionResult> Create(DeviceCreateDto dto)
     {
@@ -48,9 +46,6 @@ public class DevicesController : ControllerBase
 
     }
 
-    // ==========================================
-    // GET MY DEVICES (USER)
-    // ==========================================
     [HttpGet("my")]
     public async Task<ActionResult<IEnumerable<DeviceReadDto>>> GetMy()
     {
@@ -69,9 +64,7 @@ public class DevicesController : ControllerBase
         }).ToList();
     }
 
-    // ==========================================
-    // GET DEVICE BY ID (OWNER OR ADMIN)
-    // ==========================================
+
     [HttpGet("{id}")]
     public async Task<ActionResult<DeviceReadDto>> GetById(Guid id)
     {
@@ -96,9 +89,7 @@ public class DevicesController : ControllerBase
         };
     }
 
-    // ==========================================
-    // UPDATE DEVICE (ADMIN)
-    // ==========================================
+
     [Authorize(Roles = "Admin")]
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(Guid id, DeviceUpdateDto dto)
@@ -113,13 +104,19 @@ public class DevicesController : ControllerBase
         return NoContent();
     }
 
-    // ==========================================
-    // DELETE DEVICE (ADMIN)
-    // ==========================================
-    [Authorize(Roles = "Admin")]
+
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(Guid id)
     {
+        var device = await _deviceService.GetByIdAsync(id);
+        if (device == null) return NotFound();
+
+        var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+        var isAdmin = User.IsInRole("Admin");
+
+        if (!isAdmin && device.UserId != userId)
+            return Forbid();
+
         await _deviceService.DeleteAsync(id);
         return NoContent();
     }

@@ -2,6 +2,7 @@ using DriverGuard.Data;
 using DriverGuard.Middleware;
 using DriverGuard.Services;
 using DriverGuard.Services.AdminStats;
+using DriverGuard.Services.Fcm;
 using DriverGuard.Services.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -17,10 +18,8 @@ public class Program
             Args = args
         });
 
-        // Вимикаємо reloadOnChange для всіх джерел конфігурації
         builder.Configuration.GetSection("hostBuilder:reloadConfigOnChange").Value = "false";
 
-        // Або більш радикально — пересобираємо конфіг без "watch"
         builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
         {
             foreach (var source in config.Sources.OfType<FileConfigurationSource>())
@@ -44,6 +43,7 @@ public class Program
         builder.Services.AddScoped<IDeviceConfigurationService, DeviceConfigurationService>();
         builder.Services.AddScoped<IDriverEventService, DriverEventService>();
         builder.Services.AddScoped<INotificationService, NotificationService>();
+        builder.Services.AddSingleton<IFcmService, FcmService>();
         builder.Services.AddScoped<IAdminStatsService, AdminStatsService>();
         builder.Services.AddScoped<IJwtService, JwtService>();
 
@@ -55,7 +55,7 @@ public class Program
             {
                 Title = "DriverGuard API",
                 Version = "v1",
-                Description = "API для системи моніторингу водіїв"
+                Description = "API for DriverGuard application"
             });
 
 
@@ -66,7 +66,7 @@ public class Program
                 Scheme = "Bearer",
                 BearerFormat = "JWT",
                 In = ParameterLocation.Header,
-                Description = "Введіть JWT токен у форматі: Bearer {ваш токен}"
+                Description = "JWT: Bearer {}"
             });
 
             options.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -88,7 +88,7 @@ public class Program
         {
             options.AddSecurityDefinition("DeviceKey", new OpenApiSecurityScheme
             {
-                Description = "API key для IoT-пристрою (X-Device-Key)",
+                Description = "API key IoT (X-Device-Key)",
                 Name = "X-Device-Key",
                 In = ParameterLocation.Header,
                 Type = SecuritySchemeType.ApiKey
@@ -145,6 +145,44 @@ public class Program
         {
             var db = scope.ServiceProvider.GetRequiredService<DriverGuardDbContext>();
             db.Database.Migrate();
+
+            var adminEmail    = builder.Configuration["ADMIN_EMAIL"];
+            var adminPassword = builder.Configuration["ADMIN_PASSWORD"];
+
+            if (!string.IsNullOrWhiteSpace(adminEmail) && !string.IsNullOrWhiteSpace(adminPassword))
+            {
+                var exists = db.Users.Any(u => u.Role == DriverGuard.Models.UserRole.Admin);
+                if (!exists)
+                {
+                    db.Users.Add(new DriverGuard.Models.User
+                    {
+                        Id           = Guid.NewGuid(),
+                        Email        = adminEmail,
+                        PasswordHash = BCrypt.Net.BCrypt.HashPassword(adminPassword),
+                        Role         = DriverGuard.Models.UserRole.Admin,
+                        CreatedAt    = DateTime.UtcNow
+                    });
+                    db.SaveChanges();
+                }
+            }
+
+            var devicesWithoutConfig = db.Devices
+                .Where(d => !db.DeviceConfigurations.Any(c => c.DeviceId == d.Id))
+                .Select(d => d.Id)
+                .ToList();
+
+            foreach (var deviceId in devicesWithoutConfig)
+            {
+                db.DeviceConfigurations.Add(new DriverGuard.Models.DeviceConfiguration
+                {
+                    DeviceId             = deviceId,
+                    DrowsinessThreshold  = 0.6,
+                    AttentionThreshold   = 0.6,
+                    UpdatedAt            = DateTime.UtcNow
+                });
+            }
+            if (devicesWithoutConfig.Count > 0)
+                db.SaveChanges();
         }
 
 
