@@ -1,0 +1,144 @@
+{
+  "app": {
+    "name": "DriverGuard",
+    "tagline": "Система моніторингу стану водія"
+  },
+  "nav": {
+    "dashboard": "Пристрої",
+    "notifications": "Сповіщення",
+    "profile": "Профіль",
+    "admin": "Адмін-панель",
+    "adminUsers": "Користувачі",
+    "adminDevices": "Пристрої",
+    "adminExport": "Експорт / Імпорт",
+    "logout": "Вийти"
+  },
+  "auth": {
+    "login": "Вхід",
+    "register": "Реєстрація",
+    "email": "Email",
+    "password": "Пароль",
+    "confirmPassword": "Підтвердити пароль",
+    "loginBtn": "Увійти",
+    "registerBtn": "Зареєструватись",
+    "noAccount": "Немає акаунту?",
+    "hasAccount": "Вже є акаунт?",
+    "forgotPassword": "Забули пароль?",
+    "resetPassword": "Скинути пароль",
+    "newPassword": "Новий пароль",
+    "resetBtn": "Скинути"
+  },
+  "dashboard": {
+    "title": "Мої пристрої",
+    "addDevice": "Додати пристрій",
+    "serialNumber": "Серійний номер",
+    "active": "Активний",
+    "inactive": "Неактивний",
+    "lastSeen": "Останній сеанс",
+    "never": "Ніколи",
+    "noDevices": "Немає зареєстрованих пристроїв",
+    "newDeviceKey": "Збережіть API-ключ — він більше не буде показаний",
+    "apiKey": "API-ключ",
+    "copied": "Скопійовано",
+    "copy": "Копіювати"
+  },
+  "device": {
+    "title": "Деталі пристрою",
+    "status": "Статус пристрою",
+    "events": "Події",
+    "noEvents": "Подій ще немає",
+    "configuration": "Конфігурація",
+    "drowsinessThreshold": "Поріг сонливості",
+    "attentionThreshold": "Поріг уваги",
+    "save": "Зберегти",
+    "delete": "Видалити пристрій",
+    "deleteConfirm": "Видалити пристрій та всі його дані?",
+    "severity": "Серйозність",
+    "confidence": "Впевненість",
+    "eventType": {
+      "drowsiness": "Сонливість",
+      "attention_loss": "Втрата уваги",
+      "normal": "Норма"
+    },
+    "severityLabel": {
+      "1": "Низький",
+      "2": "Середній",
+      "3": "Середній",
+      "4": "Високий",
+      "5": "Критичний"
+    }
+  },
+  "notifications": {
+    "title": "Сповіщення",
+    "markRead": "Позначити прочитаним",
+    "noNotifications": "Немає сповіщень",
+    "unread": "Непрочитані"
+  },
+  "profile": {
+    "title": "Профіль",
+    "email": "Email",
+    "password": "Новий пароль",
+    "save": "Зберегти зміни",
+    "saved": "Збережено",
+    "memberSince": "Учасник з"
+  },
+  "admin": {
+    "stats": {
+      "title": "Статистика системи",
+      "totalUsers": "Користувачів",
+      "totalDevices": "Пристроїв",
+      "activeDevices": "Активних пристроїв",
+      "totalEvents": "Подій",
+      "totalNotifications": "Сповіщень",
+      "checkOffline": "Перевірити офлайн-пристрої",
+      "checked": "Перевірено"
+    },
+    "users": {
+      "title": "Управління користувачами",
+      "email": "Email",
+      "createdAt": "Дата реєстрації",
+      "actions": "Дії",
+      "edit": "Редагувати",
+      "delete": "Видалити",
+      "deleteConfirm": "Видалити користувача?",
+      "editTitle": "Редагування користувача",
+      "newEmail": "Новий email",
+      "newPassword": "Новий пароль (залиште порожнім)",
+      "save": "Зберегти"
+    },
+    "devices": {
+      "title": "Управління пристроями",
+      "serialNumber": "Серійний номер",
+      "owner": "Власник (ID)",
+      "status": "Статус",
+      "lastSeen": "Останній сеанс",
+      "active": "Активний",
+      "inactive": "Неактивний"
+    },
+    "export": {
+      "title": "Експорт / Імпорт / Резервна копія",
+      "exportUsers": "Експорт користувачів (JSON)",
+      "exportDevices": "Експорт пристроїв (JSON)",
+      "exportEvents": "Експорт подій (JSON)",
+      "backupSettings": "Резервна копія налаштувань",
+      "importData": "Імпорт даних",
+      "importBtn": "Завантажити JSON",
+      "importSuccess": "Дані успішно імпортовано",
+      "exportSection": "Експорт даних",
+      "importSection": "Імпорт даних",
+      "backupSection": "Резервна копія",
+      "backupDesc": "Завантажити налаштування всіх пристроїв системи у форматі JSON"
+    }
+  },
+  "common": {
+    "loading": "Завантаження...",
+    "error": "Помилка",
+    "retry": "Повторити",
+    "cancel": "Скасувати",
+    "confirm": "Підтвердити",
+    "yes": "Так",
+    "no": "Ні",
+    "back": "Назад",
+    "refresh": "Оновити"
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "app": {
+    "name": "DriverGuard",
+    "tagline": "Driver Monitoring System"
+  },
+  "nav": {
+    "dashboard": "Devices",
+    "notifications": "Notifications",
+    "profile": "Profile",
+    "admin": "Admin Panel",
+    "adminUsers": "Users",
+    "adminDevices": "Devices",
+    "adminExport": "Export / Import",
+    "logout": "Logout"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "loginBtn": "Sign In",
+    "registerBtn": "Sign Up",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "forgotPassword": "Forgot password?",
+    "resetPassword": "Reset Password",
+    "newPassword": "New Password",
+    "resetBtn": "Reset"
+  },
+  "dashboard": {
+    "title": "My Devices",
+    "addDevice": "Add Device",
+    "serialNumber": "Serial Number",
+    "active": "Active",
+    "inactive": "Inactive",
+    "lastSeen": "Last Seen",
+    "never": "Never",
+    "noDevices": "No registered devices",
+    "newDeviceKey": "Save the API key — it won't be shown again",
+    "apiKey": "API Key",
+    "copied": "Copied",
+    "copy": "Copy"
+  },
+  "device": {
+    "title": "Device Details",
+    "status": "Device Status",
+    "events": "Events",
+    "noEvents": "No events yet",
+    "configuration": "Configuration",
+    "drowsinessThreshold": "Drowsiness Threshold",
+    "attentionThreshold": "Attention Threshold",
+    "save": "Save",
+    "delete": "Delete Device",
+    "deleteConfirm": "Delete this device and all its data?",
+    "severity": "Severity",
+    "confidence": "Confidence",
+    "eventType": {
+      "drowsiness": "Drowsiness",
+      "attention_loss": "Attention Loss",
+      "normal": "Normal"
+    },
+    "severityLabel": {
+      "1": "Low",
+      "2": "Medium",
+      "3": "Medium",
+      "4": "High",
+      "5": "Critical"
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "markRead": "Mark as read",
+    "noNotifications": "No notifications",
+    "unread": "Unread"
+  },
+  "profile": {
+    "title": "Profile",
+    "email": "Email",
+    "password": "New Password",
+    "save": "Save Changes",
+    "saved": "Saved",
+    "memberSince": "Member since"
+  },
+  "admin": {
+    "stats": {
+      "title": "System Statistics",
+      "totalUsers": "Users",
+      "totalDevices": "Devices",
+      "activeDevices": "Active Devices",
+      "totalEvents": "Events",
+      "totalNotifications": "Notifications",
+      "checkOffline": "Check Offline Devices",
+      "checked": "Done"
+    },
+    "users": {
+      "title": "User Management",
+      "email": "Email",
+      "createdAt": "Registered At",
+      "actions": "Actions",
+      "edit": "Edit",
+      "delete": "Delete",
+      "deleteConfirm": "Delete this user?",
+      "editTitle": "Edit User",
+      "newEmail": "New Email",
+      "newPassword": "New Password (leave blank to keep)",
+      "save": "Save"
+    },
+    "devices": {
+      "title": "Device Management",
+      "serialNumber": "Serial Number",
+      "owner": "Owner (ID)",
+      "status": "Status",
+      "lastSeen": "Last Seen",
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "export": {
+      "title": "Export / Import / Backup",
+      "exportUsers": "Export Users (JSON)",
+      "exportDevices": "Export Devices (JSON)",
+      "exportEvents": "Export Events (JSON)",
+      "backupSettings": "Backup Settings",
+      "importData": "Import Data",
+      "importBtn": "Upload JSON",
+      "importSuccess": "Data imported successfully",
+      "exportSection": "Export Data",
+      "importSection": "Import Data",
+      "backupSection": "Backup",
+      "backupDesc": "Download all device configurations as JSON"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No",
+    "back": "Back",
+    "refresh": "Refresh"
+  }
+}
