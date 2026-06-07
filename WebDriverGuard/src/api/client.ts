@@ -41,6 +41,7 @@ export const devicesApi = {
 };
 
 export const eventsApi = {
+  getAll: () => api.get('/api/events'),
   getByDevice: (deviceId: string) => api.get(`/api/events/device/${deviceId}`),
 };
 

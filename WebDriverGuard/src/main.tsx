@@ -7,8 +7,14 @@ import App from './App';
 
 const theme = createTheme({
   palette: {
-    primary: { main: '#1565C0' },
-    secondary: { main: '#42A5F5' },
+    mode: 'dark',
+    primary: { main: '#4FC3F7' },
+    secondary: { main: '#81C784' },
+    background: {
+      default: '#121212',
+      paper: '#1E1E1E',
+    },
+    error: { main: '#CF6679' },
   },
   typography: {
     fontFamily: 'Roboto, sans-serif',

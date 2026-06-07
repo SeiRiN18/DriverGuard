@@ -7,6 +7,7 @@ import {
   Menu as MenuIcon, Router as RouterIcon, Notifications as NotifIcon,
   Person as PersonIcon, Dashboard as DashIcon, People as PeopleIcon,
   ImportExport as ExportIcon, Logout as LogoutIcon, Language as LangIcon,
+  EventNote as EventNoteIcon,
 } from '@mui/icons-material';
 import { useState } from 'react';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
@@ -34,6 +35,7 @@ export default function Layout() {
     { label: t('nav.admin'), icon: <DashIcon />, path: '/admin' },
     { label: t('nav.adminUsers'), icon: <PeopleIcon />, path: '/admin/users' },
     { label: t('nav.adminDevices'), icon: <RouterIcon />, path: '/admin/devices' },
+    { label: t('nav.adminEvents'), icon: <EventNoteIcon />, path: '/admin/events' },
     { label: t('nav.adminExport'), icon: <ExportIcon />, path: '/admin/export' },
   ];
 

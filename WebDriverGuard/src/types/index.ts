@@ -31,6 +31,7 @@ export interface DeviceConfiguration {
 
 export interface DriverEvent {
   id: string;
+  deviceId: string;
   eventType: string;
   severity: number;
   confidence: number;

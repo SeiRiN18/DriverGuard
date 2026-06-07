@@ -34,7 +34,19 @@ namespace DriverGuard.Controllers
         [HttpGet("devices")]
         public async Task<IActionResult> GetAllDevices()
         {
-            return Ok(await _deviceService.GetAllAsync());
+            var devices = await _deviceService.GetAllAsync();
+            var threshold = DateTime.UtcNow.AddSeconds(-30);
+
+            var result = devices.Select(d => new
+            {
+                d.Id,
+                d.SerialNumber,
+                d.UserId,
+                IsActive = d.LastSeenAt.HasValue && d.LastSeenAt.Value > threshold,
+                d.LastSeenAt
+            });
+
+            return Ok(result);
         }
         [HttpPost("devices/check-offline")]
         public async Task<IActionResult> CheckOffline()

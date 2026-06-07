@@ -10,6 +10,7 @@
     "admin": "Admin Panel",
     "adminUsers": "Users",
     "adminDevices": "Devices",
+    "adminEvents": "All Events",
     "adminExport": "Export / Import",
     "logout": "Logout"
   },
@@ -113,6 +114,15 @@
       "lastSeen": "Last Seen",
       "active": "Active",
       "inactive": "Inactive"
+    },
+    "events": {
+      "title": "All System Events",
+      "deviceId": "Device ID",
+      "type": "Type",
+      "severity": "Severity",
+      "confidence": "Confidence",
+      "occurredAt": "Occurred At",
+      "noEvents": "No events found"
     },
     "export": {
       "title": "Export / Import / Backup",

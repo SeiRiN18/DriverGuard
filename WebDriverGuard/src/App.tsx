@@ -15,6 +15,7 @@ import AdminDashboardPage from './pages/admin/AdminDashboardPage';
 import AdminUsersPage from './pages/admin/AdminUsersPage';
 import AdminDevicesPage from './pages/admin/AdminDevicesPage';
 import AdminExportPage from './pages/admin/AdminExportPage';
+import AdminEventsPage from './pages/admin/AdminEventsPage';
 
 function RootRedirect() {
   const { user, isAdmin } = useAuth();
@@ -42,6 +43,7 @@ export default function App() {
               <Route path="/admin" element={<ProtectedRoute adminOnly><AdminDashboardPage /></ProtectedRoute>} />
               <Route path="/admin/users" element={<ProtectedRoute adminOnly><AdminUsersPage /></ProtectedRoute>} />
               <Route path="/admin/devices" element={<ProtectedRoute adminOnly><AdminDevicesPage /></ProtectedRoute>} />
+              <Route path="/admin/events" element={<ProtectedRoute adminOnly><AdminEventsPage /></ProtectedRoute>} />
               <Route path="/admin/export" element={<ProtectedRoute adminOnly><AdminExportPage /></ProtectedRoute>} />
             </Route>
           </Routes>

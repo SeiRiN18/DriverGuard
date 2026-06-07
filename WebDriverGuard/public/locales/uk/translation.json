@@ -10,6 +10,7 @@
     "admin": "Адмін-панель",
     "adminUsers": "Користувачі",
     "adminDevices": "Пристрої",
+    "adminEvents": "Всі події",
     "adminExport": "Експорт / Імпорт",
     "logout": "Вийти"
   },
@@ -113,6 +114,15 @@
       "lastSeen": "Останній сеанс",
       "active": "Активний",
       "inactive": "Неактивний"
+    },
+    "events": {
+      "title": "Всі події системи",
+      "deviceId": "ID пристрою",
+      "type": "Тип",
+      "severity": "Серйозність",
+      "confidence": "Впевненість",
+      "occurredAt": "Час події",
+      "noEvents": "Подій немає"
     },
     "export": {
       "title": "Експорт / Імпорт / Резервна копія",
