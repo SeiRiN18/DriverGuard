@@ -94,6 +94,15 @@ namespace DriverGuard.Services
             await _context.SaveChangesAsync();
         }
 
+        public async Task UpdateFcmTokenAsync(Guid userId, string? fcmToken)
+        {
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null)
+                throw new NotFoundException("Користувача не знайдено");
+            user.FcmToken = fcmToken;
+            await _context.SaveChangesAsync();
+        }
+
         public async Task DeleteAsync(Guid id)
         {
             if (id == Guid.Empty)

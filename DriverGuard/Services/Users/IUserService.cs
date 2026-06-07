@@ -14,6 +14,7 @@ namespace DriverGuard.Services.Users
 
         // UPDATE
         Task UpdateAsync(User user);
+        Task UpdateFcmTokenAsync(Guid userId, string? fcmToken);
 
         // DELETE
         Task DeleteAsync(Guid id);

@@ -22,11 +22,7 @@ public class UsersController : ControllerBase
     public async Task<IActionResult> UpdateFcmToken(UpdateFcmTokenDto dto)
     {
         var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
-        var user = await _userService.GetByIdAsync(userId);
-        if (user == null) return NotFound();
-
-        user.FcmToken = dto.FcmToken;
-        await _userService.UpdateAsync(user);
+        await _userService.UpdateFcmTokenAsync(userId, dto.FcmToken);
         return NoContent();
     }
 
@@ -84,8 +80,7 @@ public class UsersController : ControllerBase
         if (user == null) return NotFound();
 
         user.Email = dto.Email;
-
-        user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password);
+        user.PasswordHash = dto.Password;
 
         await _userService.UpdateAsync(user);
         return NoContent();
