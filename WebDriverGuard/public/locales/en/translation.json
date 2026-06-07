@@ -87,11 +87,10 @@
       "title": "System Statistics",
       "totalUsers": "Users",
       "totalDevices": "Devices",
-      "activeDevices": "Active Devices",
       "totalEvents": "Events",
+      "criticalEvents": "Critical Events",
       "totalNotifications": "Notifications",
-      "checkOffline": "Check Offline Devices",
-      "checked": "Done"
+      "unreadNotifications": "Unread Notifications"
     },
     "users": {
       "title": "User Management",

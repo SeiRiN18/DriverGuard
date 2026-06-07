@@ -43,23 +43,28 @@ export default function AdminDevicesPage() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {devices.map((d) => (
-              <TableRow key={d.id} hover>
-                <TableCell>{d.serialNumber}</TableCell>
-                <TableCell sx={{ fontFamily: 'monospace', fontSize: '0.75rem' }}>
-                  {d.userId ?? '—'}
-                </TableCell>
-                <TableCell>
-                  <Chip
-                    label={d.isActive ? t('admin.devices.active') : t('admin.devices.inactive')}
-                    color={d.isActive ? 'success' : 'default'} size="small"
-                  />
-                </TableCell>
-                <TableCell>
-                  {d.lastSeenAt ? formatDate(d.lastSeenAt, i18n.language) : '—'}
-                </TableCell>
-              </TableRow>
-            ))}
+            {devices.map((d) => {
+              const isOnline = d.lastSeenAt
+                ? Date.now() - new Date(d.lastSeenAt).getTime() < 30000
+                : false;
+              return (
+                <TableRow key={d.id} hover>
+                  <TableCell>{d.serialNumber}</TableCell>
+                  <TableCell sx={{ fontFamily: 'monospace', fontSize: '0.75rem' }}>
+                    {d.userId ?? '—'}
+                  </TableCell>
+                  <TableCell>
+                    <Chip
+                      label={isOnline ? t('admin.devices.active') : t('admin.devices.inactive')}
+                      color={isOnline ? 'success' : 'default'} size="small"
+                    />
+                  </TableCell>
+                  <TableCell>
+                    {d.lastSeenAt ? formatDate(d.lastSeenAt, i18n.language) : '—'}
+                  </TableCell>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </Paper>

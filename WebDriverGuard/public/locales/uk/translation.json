@@ -87,11 +87,10 @@
       "title": "Статистика системи",
       "totalUsers": "Користувачів",
       "totalDevices": "Пристроїв",
-      "activeDevices": "Активних пристроїв",
       "totalEvents": "Подій",
+      "criticalEvents": "Критичних подій",
       "totalNotifications": "Сповіщень",
-      "checkOffline": "Перевірити офлайн-пристрої",
-      "checked": "Перевірено"
+      "unreadNotifications": "Непрочитаних сповіщень"
     },
     "users": {
       "title": "Управління користувачами",

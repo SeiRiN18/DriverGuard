@@ -47,20 +47,7 @@ namespace DriverGuard.Services
                 .ToListAsync();
 
             foreach (var device in devices)
-            {
                 device.IsActive = false;
-
-                _context.Notifications.Add(new Notification
-                {
-                    Id = Guid.NewGuid(),
-                    UserId = device.UserId,
-                    DeviceId = device.Id,
-                    Type = "WARNING",
-                    Message = "Пристрій перейшов у offline-стан",
-                    CreatedAt = DateTime.UtcNow,
-                    IsRead = false
-                });
-            }
 
             await _context.SaveChangesAsync();
         }

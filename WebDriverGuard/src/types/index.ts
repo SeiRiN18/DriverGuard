@@ -46,11 +46,12 @@ export interface AppNotification {
 }
 
 export interface AdminStats {
-  totalUsers: number;
-  totalDevices: number;
-  activeDevices: number;
-  totalEvents: number;
-  totalNotifications?: number;
+  users: number;
+  devices: number;
+  events: number;
+  criticalEvents: number;
+  notifications: number;
+  unreadNotifications: number;
 }
 
 export interface AuthUser {
