@@ -42,8 +42,8 @@ bool sendEventToServer(const DriverEvent& ev) {
       return false;
   }
 
+  http.setTimeout(15000);
   http.addHeader("Content-Type", "application/json");
- 
   http.addHeader("X-Device-Key", DEVICE_API_KEY);
 
   char occurred_at[25];
@@ -59,15 +59,20 @@ bool sendEventToServer(const DriverEvent& ev) {
   Serial.print("Posting to: ");
   Serial.println(url);
 
+  Serial.print("[HTTP] POST -> ");
+  Serial.println(url);
+  Serial.print("[HTTP] Payload: ");
+  Serial.println(payload);
+
   int code = http.POST(payload);
-  
+
   if (code > 0) {
-      String response = http.getString();
-      Serial.print("Server response: ");
-      Serial.println(code);
-     
-      Serial.print("Error sending POST: ");
-      Serial.println(http.errorToString(code).c_str());
+      Serial.printf("[HTTP] Response code: %d\n", code);
+      if (code != 200 && code != 201) {
+          Serial.println(http.getString());
+      }
+  } else {
+      Serial.printf("[HTTP] FAILED: %s\n", http.errorToString(code).c_str());
   }
 
   http.end();

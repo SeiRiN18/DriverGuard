@@ -31,7 +31,7 @@ namespace DriverGuard.Controllers
             {
                 Id = Guid.NewGuid(),
                 Email = dto.Email,
-                PasswordHash = dto.Password,
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password),
                 Role = UserRole.User,
                 CreatedAt = DateTime.UtcNow
             };

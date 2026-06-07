@@ -62,5 +62,13 @@
     [ "rgb1:G", "esp:D27", "green", [ "v0" ] ],
     [ "rgb1:B", "esp:D14", "green", [ "v0" ] ]
   ],
-  "dependencies": {}
+  "serialMonitor": {
+    "collapse": false,
+    "convertEol": false,
+    "display": "always",
+    "newline": "lf"
+  }
+
+
+
 }

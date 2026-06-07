@@ -8,7 +8,7 @@
 #define EVENTS_ENDPOINT "/api/events"
 
 
-#define DEVICE_API_KEY  "4c6aaf23-ea0f-41af-b659-de0dd3a9fdd4"
+#define DEVICE_API_KEY  "3818ab6f-354c-4df8-b8eb-514a5bfe3379"
 
 
 #define SEND_INTERVAL_MS 5000   
