@@ -50,6 +50,7 @@ namespace DriverGuard.Services
             driverEvent.Id = Guid.NewGuid();
             driverEvent.CreatedAt = DateTime.UtcNow;
             device.LastSeenAt = DateTime.UtcNow;
+            device.IsActive = true;
 
             _context.DriverEvents.Add(driverEvent);
             await _context.SaveChangesAsync();

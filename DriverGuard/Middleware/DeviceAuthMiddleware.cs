@@ -34,7 +34,7 @@ namespace DriverGuard.Middleware
             var hashedKey = Hash(rawKey!);
 
             var device = await db.Devices
-                .FirstOrDefaultAsync(d => d.ApiKeyHash == hashedKey && d.IsActive);
+                .FirstOrDefaultAsync(d => d.ApiKeyHash == hashedKey);
 
             if (device == null)
             {
