@@ -31,7 +31,7 @@ namespace DriverGuard.Controllers
             {
                 Id = Guid.NewGuid(),
                 Email = dto.Email,
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password),
+                PasswordHash = dto.Password,
                 Role = UserRole.User,
                 CreatedAt = DateTime.UtcNow
             };
@@ -68,7 +68,7 @@ namespace DriverGuard.Controllers
 
             if (needsRehash)
             {
-                user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password);
+                user.PasswordHash = dto.Password;
                 await _userService.UpdateAsync(user);
             }
 
@@ -89,7 +89,7 @@ namespace DriverGuard.Controllers
             if (user == null)
                 return NotFound("Користувача з таким email не знайдено");
 
-            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.NewPassword);
+            user.PasswordHash = dto.NewPassword;
             await _userService.UpdateAsync(user);
 
             return Ok();
