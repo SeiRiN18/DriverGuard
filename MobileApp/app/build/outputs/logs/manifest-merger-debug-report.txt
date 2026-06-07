@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:2:1-33:12
-INJECTED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:2:1-33:12
-INJECTED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:2:1-33:12
-INJECTED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:2:1-33:12
+ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:2:1-35:12
+INJECTED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:2:1-35:12
+INJECTED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:2:1-35:12
+INJECTED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:2:1-35:12
 MERGED from [androidx.navigation:navigation-common:2.7.7] C:\Users\olegs\.gradle\caches\9.0.0\transforms\ce68675f30528e97a3d103621b5ba51e\transformed\navigation-common-2.7.7\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-runtime:2.7.7] C:\Users\olegs\.gradle\caches\9.0.0\transforms\bd4fe2569e05ef42fd7a95f94179ba06\transformed\navigation-runtime-2.7.7\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-common-ktx:2.7.7] C:\Users\olegs\.gradle\caches\9.0.0\transforms\89cd78e034b2c395e8be4f1f283374cc\transformed\navigation-common-ktx-2.7.7\AndroidManifest.xml:2:1-7:12
@@ -111,8 +111,8 @@ MERGED from [com.google.firebase:firebase-messaging:24.1.0] C:\Users\olegs\.grad
 	android:name
 		ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:5:22-74
 application
-ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:7:5-31:19
-INJECTED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:7:5-31:19
+ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:7:5-33:19
+INJECTED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:7:5-33:19
 MERGED from [com.google.firebase:firebase-messaging:24.1.0] C:\Users\olegs\.gradle\caches\9.0.0\transforms\5c78b84e3522eee8c3cbeb266da26d62\transformed\firebase-messaging-24.1.0\AndroidManifest.xml:28:5-64:19
 MERGED from [com.google.firebase:firebase-messaging:24.1.0] C:\Users\olegs\.gradle\caches\9.0.0\transforms\5c78b84e3522eee8c3cbeb266da26d62\transformed\firebase-messaging-24.1.0\AndroidManifest.xml:28:5-64:19
 MERGED from [com.google.android.gms:play-services-stats:17.0.2] C:\Users\olegs\.gradle\caches\9.0.0\transforms\b4b25056b344e4ba82d4383069f59ab2\transformed\play-services-stats-17.0.2\AndroidManifest.xml:7:5-20
@@ -158,43 +158,47 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\olegs\.gradle\cach
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.13.1] C:\Users\olegs\.gradle\caches\9.0.0\transforms\cf805e79e262ec03f4d5cff301205839\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:11:9-35
+		ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:13:9-35
 	android:label
-		ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:9:9-41
+		ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:11:9-41
+	android:roundIcon
+		ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:10:9-54
+	android:icon
+		ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:9:9-43
 	android:allowBackup
 		ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:8:9-35
 	android:theme
-		ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:10:9-49
+		ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:12:9-49
 activity#com.driverguard.MainActivity
-ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:13:9-21:20
+ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:15:9-23:20
 	android:windowSoftInputMode
-		ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:16:13-55
+		ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:18:13-55
 	android:exported
-		ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:15:13-36
+		ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:17:13-36
 	android:name
-		ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:14:13-41
+		ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:16:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:17:13-20:29
+ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:19:13-22:29
 action#android.intent.action.MAIN
-ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:18:17-69
+ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:20:17-69
 	android:name
-		ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:18:25-66
+		ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:20:25-66
 category#android.intent.category.LAUNCHER
-ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:19:17-77
+ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:21:17-77
 	android:name
-		ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:19:27-74
+		ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:21:27-74
 service#com.driverguard.service.DriverGuardFirebaseService
-ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:23:9-29:19
+ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:25:9-31:19
 	android:exported
-		ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:25:13-37
+		ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:27:13-37
 	android:name
-		ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:24:13-63
+		ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:26:13-63
 intent-filter#action:name:com.google.firebase.MESSAGING_EVENT
-ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:26:13-28:29
+ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:28:13-30:29
 action#com.google.firebase.MESSAGING_EVENT
-ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:27:17-78
+ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:29:17-78
 	android:name
-		ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:27:25-75
+		ADDED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml:29:25-75
 uses-sdk
 INJECTED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\NUREGIT\DriverGuard\MobileApp\app\src\main\AndroidManifest.xml

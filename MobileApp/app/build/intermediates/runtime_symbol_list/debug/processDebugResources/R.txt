@@ -111,6 +111,8 @@ int drawable ic_call_answer_video 0x7f040017
 int drawable ic_call_answer_video_low 0x7f040018
 int drawable ic_call_decline 0x7f040019
 int drawable ic_call_decline_low 0x7f04001a
+int drawable ic_launcher_background 0x7f040029
+int drawable ic_launcher_foreground 0x7f04002a
 int drawable ic_notification 0x7f04001b
 int drawable notification_action_background 0x7f04001c
 int drawable notification_bg 0x7f04001d
@@ -233,6 +235,8 @@ int layout notification_template_custom_big 0x7f070005
 int layout notification_template_icon_group 0x7f070006
 int layout notification_template_part_chronometer 0x7f070007
 int layout notification_template_part_time 0x7f070008
+int mipmap ic_launcher 0x7f0c0000
+int mipmap ic_launcher_round 0x7f0c0001
 int raw firebase_common_keep 0x7f080000
 int string androidx_startup 0x7f090000
 int string app_name 0x7f090001

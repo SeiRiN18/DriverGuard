@@ -17,6 +17,9 @@ interface ApiService {
     @GET("api/devices/my")
     suspend fun getMyDevices(): Response<List<Device>>
 
+    @GET("api/devices/{deviceId}")
+    suspend fun getDevice(@Path("deviceId") deviceId: String): Response<Device>
+
     @POST("api/devices")
     suspend fun createDevice(@Body request: CreateDeviceRequest): Response<CreateDeviceResponse>
 

@@ -3,18 +3,27 @@ package com.driverguard.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.driverguard.data.api.RetrofitClient
+import com.driverguard.data.model.Device
 import com.driverguard.data.model.DeviceConfiguration
 import com.driverguard.data.model.DriverEvent
 import com.driverguard.data.repository.DeviceRepository
 import com.driverguard.data.repository.EventRepository
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
 class DeviceDetailViewModel : ViewModel() {
 
     private val eventRepo = EventRepository(RetrofitClient.api)
     private val deviceRepo = DeviceRepository(RetrofitClient.api)
+
+    private var pollingJob: Job? = null
+
+    private val _device = MutableStateFlow<Device?>(null)
+    val device: StateFlow<Device?> = _device
 
     private val _events = MutableStateFlow<List<DriverEvent>>(emptyList())
     val events: StateFlow<List<DriverEvent>> = _events
@@ -41,13 +50,34 @@ class DeviceDetailViewModel : ViewModel() {
             eventRepo.getEventsByDevice(deviceId)
                 .onSuccess { _events.value = it }
                 .onFailure { _error.value = it.message }
+            deviceRepo.getDevice(deviceId)
+                .onSuccess { _device.value = it }
             deviceRepo.getConfiguration(deviceId)
                 .onSuccess { _config.value = it }
             _isLoading.value = false
         }
+        startPolling(deviceId)
+    }
+
+    private fun startPolling(deviceId: String) {
+        pollingJob?.cancel()
+        pollingJob = viewModelScope.launch {
+            while (isActive) {
+                delay(5_000)
+                eventRepo.getEventsByDevice(deviceId)
+                    .onSuccess { _events.value = it }
+                deviceRepo.getDevice(deviceId)
+                    .onSuccess { _device.value = it }
+            }
+        }
     }
 
     fun loadEvents(deviceId: String) = load(deviceId)
+
+    override fun onCleared() {
+        super.onCleared()
+        pollingJob?.cancel()
+    }
 
     fun updateConfiguration(deviceId: String, drowsiness: Double, attention: Double) {
         viewModelScope.launch {

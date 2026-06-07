@@ -97,11 +97,12 @@ void updateDisplay(float drowsy, float attention, int severity, bool headDown) {
 
 
 void networkTask(void * parameter) {
+  Serial.println("[NetTask] started on core 0");
   DriverEvent ev;
   for(;;) {
-   
+
     if (xQueueReceive(eventQueue, &ev, portMAX_DELAY)) {
-      
+
       Serial.println("[Task] Received event, sending to server...");
       
      
@@ -162,13 +163,13 @@ void setup() {
 
  
   xTaskCreatePinnedToCore(
-    networkTask,   
-    "NetTask",    
-    8192,          
-    NULL,          
-    1,             
-    NULL,          
-    0              
+    networkTask,
+    "NetTask",
+    8192,
+    NULL,
+    1,
+    NULL,
+    1              // core 1 — same as Arduino loop, Serial works in Wokwi
   );
 }
 
@@ -253,8 +254,9 @@ void loop() {
     lastReportedEventType = eventType;
 
    
-    xQueueSend(eventQueue, &ev, 0); 
+    Serial.printf("[Loop] Queuing event: type=%s sev=%d conf=%.2f\n", eventType, severity, confidence);
+    xQueueSend(eventQueue, &ev, 0);
   }
 
-  delay(50); 
+  delay(50);
 }

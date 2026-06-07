@@ -24,6 +24,8 @@ fun DeviceDetailScreen(
     viewModel: DeviceDetailViewModel,
     onBack: () -> Unit
 ) {
+    val liveDevice by viewModel.device.collectAsState()
+    val currentDevice = liveDevice ?: device
     val events by viewModel.events.collectAsState()
     val config by viewModel.config.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
@@ -110,7 +112,7 @@ fun DeviceDetailScreen(
                 .fillMaxSize()
                 .padding(padding)
         ) {
-            DeviceStatusCard(device = device, config = config, onConfigClick = { showConfigDialog = true })
+            DeviceStatusCard(device = currentDevice, config = config, onConfigClick = { showConfigDialog = true })
 
             Box(modifier = Modifier.weight(1f)) {
                 when {

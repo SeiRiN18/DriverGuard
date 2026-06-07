@@ -23,6 +23,13 @@ class DeviceRepository(private val api: ApiService) {
             else error("Помилка створення пристрою: ${response.code()}")
         }
 
+    suspend fun getDevice(deviceId: String): Result<Device> =
+        runCatching {
+            val response = api.getDevice(deviceId)
+            if (response.isSuccessful) response.body()!!
+            else error("Пристрій не знайдено")
+        }
+
     suspend fun getConfiguration(deviceId: String): Result<DeviceConfiguration> =
         runCatching {
             val response = api.getDeviceConfiguration(deviceId)
