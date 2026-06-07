@@ -47,7 +47,7 @@ export default function AdminExportPage() {
       );
       const result = configs
         .filter((c) => c.status === 'fulfilled')
-        .map((c) => (c as PromiseFulfilledResult<{ data: unknown }>).data.data);
+        .map((c) => (c as PromiseFulfilledResult<{ data: unknown }>).value.data);
       downloadJson({ exportedAt: new Date().toISOString(), configurations: result },
         `driverguard-backup-${Date.now()}.json`);
     } catch { setError(t('common.error')); }
