@@ -50,7 +50,21 @@ export default function DeviceDetailPage() {
     }
   };
 
-  useEffect(() => { load(); }, [id]);
+  useEffect(() => {
+    load();
+    const id_poll = setInterval(async () => {
+      if (!id) return;
+      try {
+        const [dRes, eRes] = await Promise.all([
+          devicesApi.getById(id),
+          eventsApi.getByDevice(id),
+        ]);
+        setDevice(dRes.data);
+        setEvents(eRes.data);
+      } catch {}
+    }, 5000);
+    return () => clearInterval(id_poll);
+  }, [id]);
 
   const handleDelete = async () => {
     if (!id) return;
@@ -131,8 +145,8 @@ export default function DeviceDetailPage() {
                 {events.map((ev) => (
                   <TableRow key={ev.id}>
                     <TableCell>
-                      {ev.eventType === 'drowsiness' ? t('device.eventType.drowsiness')
-                        : ev.eventType === 'attention_loss' ? t('device.eventType.attention_loss')
+                      {ev.eventType.toUpperCase() === 'DROWSINESS' ? t('device.eventType.drowsiness')
+                        : ev.eventType.toUpperCase() === 'ATTENTION_LOSS' ? t('device.eventType.attention_loss')
                         : t('device.eventType.normal')}
                     </TableCell>
                     <TableCell>

@@ -1,5 +1,5 @@
 #include <HTTPClient.h>
-#include <WiFiClientSecure.h> 
+#include <WiFiClientSecure.h>
 #include <time.h>
 #include "api_client.h"
 #include "config.h"
@@ -7,42 +7,35 @@
 
 static void formatIsoTimestamp(unsigned long ms_since_boot, char* out, size_t out_size) {
   time_t now = time(nullptr);
-  
-  if (now < 100000) {
-    now = ms_since_boot / 1000;
-  }
+  if (now < 100000) now = ms_since_boot / 1000;
 
   struct tm tm_utc;
   gmtime_r(&now, &tm_utc);
   snprintf(out, out_size, "%04d-%02d-%02dT%02d:%02d:%02dZ",
-           tm_utc.tm_year + 1900,
-           tm_utc.tm_mon + 1,
-           tm_utc.tm_mday,
-           tm_utc.tm_hour,
-           tm_utc.tm_min,
-           tm_utc.tm_sec);
+    tm_utc.tm_year + 1900, tm_utc.tm_mon + 1, tm_utc.tm_mday,
+    tm_utc.tm_hour, tm_utc.tm_min, tm_utc.tm_sec);
 }
 
 bool sendEventToServer(const DriverEvent& ev) {
-  if (!isWiFiConnected()) return false;
+  if (!isWiFiConnected()) {
+    Serial.println("[HTTP] No WiFi, skipping");
+    return false;
+  }
 
- 
   WiFiClientSecure client;
-  
-  
   client.setInsecure();
 
   HTTPClient http;
-
-  
   String url = String(SERVER_URL) + EVENTS_ENDPOINT;
-  
+
+  Serial.print("[HTTP] POST -> "); Serial.println(url);
+
   if (!http.begin(client, url)) {
-      Serial.println("Failed to begin HTTPS connection");
-      return false;
+    Serial.println("[HTTP] begin() failed");
+    return false;
   }
 
-  http.setTimeout(15000);
+  http.setTimeout(10000);
   http.addHeader("Content-Type", "application/json");
   http.addHeader("X-Device-Key", DEVICE_API_KEY);
 
@@ -51,31 +44,22 @@ bool sendEventToServer(const DriverEvent& ev) {
 
   String payload = "{";
   payload += "\"eventType\":\"" + String(ev.eventType) + "\",";
-  payload += "\"severity\":" + String(ev.severity) + ",";
-  payload += "\"confidence\":" + String(ev.confidence, 2) + ",";
+  payload += "\"severity\":"    + String(ev.severity)  + ",";
+  payload += "\"confidence\":"  + String(ev.confidence, 2) + ",";
   payload += "\"occurredAt\":\"" + String(occurred_at) + "\"";
   payload += "}";
 
-  Serial.print("Posting to: ");
-  Serial.println(url);
-
-  Serial.print("[HTTP] POST -> ");
-  Serial.println(url);
-  Serial.print("[HTTP] Payload: ");
-  Serial.println(payload);
+  Serial.print("[HTTP] Payload: "); Serial.println(payload);
 
   int code = http.POST(payload);
 
   if (code > 0) {
-      Serial.printf("[HTTP] Response code: %d\n", code);
-      if (code != 200 && code != 201) {
-          Serial.println(http.getString());
-      }
+    Serial.printf("[HTTP] Response: %d\n", code);
+    if (code != 200 && code != 201) Serial.println(http.getString());
   } else {
-      Serial.printf("[HTTP] FAILED: %s\n", http.errorToString(code).c_str());
+    Serial.printf("[HTTP] FAILED: %s\n", http.errorToString(code).c_str());
   }
 
   http.end();
-
   return code == 200 || code == 201;
 }

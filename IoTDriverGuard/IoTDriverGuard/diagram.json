@@ -37,9 +37,6 @@
     }
   ],
   "connections": [
-    [ "esp:GND", "mpu:GND", "black", [] ],
-    [ "esp:21", "mpu:SDA", "green", [] ],
-    [ "esp:22", "mpu:SCL", "yellow", [] ],
     [ "imu1:SDA", "esp:D21", "green", [ "v0" ] ],
     [ "imu1:SCL", "esp:D22", "green", [ "v0" ] ],
     [ "oled1:SDA", "esp:D21", "green", [ "v0" ] ],
