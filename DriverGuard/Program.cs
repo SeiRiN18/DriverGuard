@@ -29,6 +29,14 @@ public class Program
         });
 
 
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAll", policy =>
+                policy.AllowAnyOrigin()
+                      .AllowAnyHeader()
+                      .AllowAnyMethod());
+        });
+
         builder.Services.AddControllers();
         builder.Services.AddOpenApi();
 
@@ -186,6 +194,8 @@ public class Program
         }
 
 
+
+        app.UseCors("AllowAll");
 
         app.UseMiddleware<ExceptionHandlingMiddleware>();
         app.UseMiddleware<DeviceAuthMiddleware>();
