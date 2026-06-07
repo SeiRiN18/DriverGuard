@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import {
   Alert, Box, Chip, CircularProgress, Paper, Table, TableBody,
-  TableCell, TableHead, TableRow, Typography,
+  TableCell, TableHead, TablePagination, TableRow, Typography,
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { eventsApi } from '../../api/client';
@@ -17,6 +17,8 @@ export default function AdminEventsPage() {
   const [events, setEvents] = useState<DriverEvent[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(25);
 
   useEffect(() => {
     eventsApi.getAll()
@@ -26,6 +28,8 @@ export default function AdminEventsPage() {
   }, []);
 
   if (loading) return <Box display="flex" justifyContent="center" mt={8}><CircularProgress /></Box>;
+
+  const paginated = events.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
   return (
     <Box>
@@ -44,7 +48,7 @@ export default function AdminEventsPage() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {events.map((e) => (
+            {paginated.map((e) => (
               <TableRow key={e.id} hover>
                 <TableCell sx={{ fontFamily: 'monospace', fontSize: '0.75rem' }}>
                   {e.deviceId}
@@ -72,6 +76,15 @@ export default function AdminEventsPage() {
             )}
           </TableBody>
         </Table>
+        <TablePagination
+          component="div"
+          count={events.length}
+          page={page}
+          rowsPerPage={rowsPerPage}
+          onPageChange={(_, p) => setPage(p)}
+          onRowsPerPageChange={(e) => { setRowsPerPage(+e.target.value); setPage(0); }}
+          rowsPerPageOptions={[10, 25, 50]}
+        />
       </Paper>
     </Box>
   );

@@ -22,18 +22,23 @@ export default function DashboardPage() {
   const [copied, setCopied] = useState(false);
   const [error, setError] = useState('');
 
-  const load = async () => {
+  const load = async (silent = false) => {
     try {
       const res = await devicesApi.getMy();
       setDevices(res.data);
+      if (!silent) setError('');
     } catch {
-      setError(t('common.error'));
+      if (!silent) setError(t('common.error'));
     } finally {
-      setLoading(false);
+      if (!silent) setLoading(false);
     }
   };
 
-  useEffect(() => { load(); }, []);
+  useEffect(() => {
+    load(false);
+    const id = setInterval(() => load(true), 5000);
+    return () => clearInterval(id);
+  }, []);
 
   const handleAdd = async () => {
     if (!serial.trim()) return;
@@ -42,7 +47,7 @@ export default function DashboardPage() {
       setNewDevice(res.data);
       setSerial('');
       setAddOpen(false);
-      load();
+      load(false);
     } catch {
       setError(t('common.error'));
     }
@@ -114,7 +119,7 @@ export default function DashboardPage() {
         <DialogContent>
           <Alert severity="warning" sx={{ mb: 2 }}>{t('dashboard.newDeviceKey')}</Alert>
           <Stack direction="row" alignItems="center" spacing={1}
-            sx={{ bgcolor: 'grey.100', p: 1.5, borderRadius: 1 }}>
+            sx={{ bgcolor: 'action.hover', p: 1.5, borderRadius: 1 }}>
             <Typography variant="body2" sx={{ flex: 1, wordBreak: 'break-all', fontFamily: 'monospace' }}>
               {newDevice?.apiKey}
             </Typography>

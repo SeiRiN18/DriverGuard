@@ -113,7 +113,10 @@
       "status": "Status",
       "lastSeen": "Last Seen",
       "active": "Active",
-      "inactive": "Inactive"
+      "inactive": "Inactive",
+      "checkOffline": "Check Offline",
+      "checkOfflineDesc": "Mark devices with no activity >5 min as inactive",
+      "checked": "Offline devices processed"
     },
     "events": {
       "title": "All System Events",
