@@ -49,8 +49,28 @@ namespace DriverGuard.Controllers
             if (user == null)
                 return Unauthorized("Невірний email або пароль");
 
-            if (!BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
+            bool passwordValid;
+            bool needsRehash = false;
+
+            if (user.PasswordHash.StartsWith("$2"))
+            {
+                passwordValid = BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash);
+            }
+            else
+            {
+                // plain text stored by old buggy register — allow login and rehash
+                passwordValid = user.PasswordHash == dto.Password;
+                needsRehash = passwordValid;
+            }
+
+            if (!passwordValid)
                 return Unauthorized("Невірний email або пароль");
+
+            if (needsRehash)
+            {
+                user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password);
+                await _userService.UpdateAsync(user);
+            }
 
             var token = _jwtService.GenerateToken(user);
 
