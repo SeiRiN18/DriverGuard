@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: driverguard_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: driverguard_pass
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d driverguard_db"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build:
+      context: ./DriverGuard
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=driverguard_db;Username=postgres;Password=driverguard_pass;Maximum Pool Size=30;Minimum Pool Size=2
+      - Jwt__Key=THIS_IS_A_VERY_LONG_AND_SECURE_32PLUS_CHAR_SECRET_KEY_FOR_LAB
+      - Jwt__Issuer=DriverGuard
+      - Jwt__Audience=DriverGuardClient
+    depends_on:
+      postgres:
+        condition: service_healthy
+    # scale with: docker compose up --scale api=N
+    # default: 1 instance
+
+  nginx:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api
+
+volumes:
+  pgdata:
